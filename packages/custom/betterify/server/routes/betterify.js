@@ -1,19 +1,42 @@
 'use strict';
 
+var mongoose = require('mongoose');
+var Day = mongoose.model('Day');
+
 /* jshint -W098 */
 // The Package is past automatically as first parameter
 module.exports = function(Betterify, app, auth, database) {
 
-  app.get('/betterify/example/anyone', function(req, res, next) {
-    res.send('Anyone can access this');
+  app.post('/betterify/day', function(req, res, next) {
+    var day = new Day(req.body);
+    day.save(function(err, day) {
+      if (err) { return next(err); }
+      console.log("saved day", day);
+    });
+    res.send();
   });
 
-  app.get('/betterify/example/auth', auth.requiresLogin, function(req, res, next) {
-    res.send('Only authenticated users can access this');
+  // Get all days
+  app.get('/betterify/day', /* auth.requiresLogin, */function(req, res, next) {
+    Day.find(function(err, days) {
+      res.json(days)
+    });
   });
 
-  app.get('/betterify/example/admin', auth.requiresAdmin, function(req, res, next) {
-    res.send('Only users with Admin role can access this');
+  app.param('day', /* auth.requiresLogin, */function(req, res, next, id) {
+    var query = Day.findById(id);
+    query.exec(function(err, day) {
+      if (err) { return next(err); }
+      if (!day) { return next(new Error('Cant find post')); }
+
+      req.day = day;
+      return next();
+    })
+  });
+
+  // Get day
+  app.get('betterify/day/:day', function(req, res, next) {
+    res.json(req.day);
   });
 
   app.get('/betterify/example/render', function(req, res, next) {
