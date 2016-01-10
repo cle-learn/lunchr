@@ -1,4 +1,16 @@
-# React Slingshot!
+# lunchr
+A lunch deciding app
+
+"Where do you want to go to lunch today?"
+"I don't know, where do you want to go?"
+"Well, we could go to Subway, or get Chinese, or maybe grab some pizza?"
+"Hm, I'm kind of feeling pizza maybe but I could really do anything."
+Hours later....
+"OMG why can't we just decide where to go for lunch???"
+
+NOW YOU CAN! Invite your friends to join you for lunch and vote on where to go with Lunchr!
+
+# Based on React Slingshot!
 
 React Slingshot is a comprehensive framework for rapid application development using React. It offers a rich development experience including:
 
