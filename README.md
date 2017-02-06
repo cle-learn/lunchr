@@ -1,4 +1,6 @@
 # lunchr
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/cle-learn/lunchr.svg)](https://greenkeeper.io/)
 A lunch deciding app
 
 "Where do you want to go to lunch today?"
